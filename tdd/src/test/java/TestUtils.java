@@ -43,23 +43,62 @@ public class TestUtils {
 
     @Test
     public void OneTwoThreeArrayEqualsThreeFourFiveArray(){
-        int[] array1 = {1,2,3};
-        int[] array2 = {3,4,5};
-        assertThat(array1).isNotEqualTo(array2);
+        int[] array1 = {1,2,3,4,5,6,7,8,9,0};
+        int[] array2 = {1,2,3,4,5,6,7,8,9};
+        boolean actual = Utils.arrayEquals(array1, array2);
+        assertThat(actual).isFalse();
     }
 
     @Test
     public void DifferentSizesTest(){
         int[] array1 = {1,2,3};
         int[] array2 = {3,4};
-        assertThat(array1).isNotEqualTo(array2);
+        boolean actual = Utils.arrayEquals(array1, array2);
+        assertThat(actual).isFalse();
     }
 
+
+    @Test // T type
+    public void DifferentSizesOfArraysT(){
+        String[] array1 = {"siema", "Ala", "ma", "kota"};
+        String[] array2 = {"siema", "Ala", "ma",};
+        boolean actual = Utils.arrayEqualsT(array1, array2);
+        assertThat(actual).isFalse();
+    }
+    @Test // T type
+    public void OneToSevenIsOneToSevenT(){
+        Integer[] array1 = {1,2,3,4,5,6,7};
+        Integer[] array2 = {1,2,3,4,5,6,7};
+        boolean actual = Utils.arrayEqualsT(array1, array2);
+        assertThat(actual).isTrue();
+    }
+
+    @Test // T type
+    public void TwoOtherTypesOtherSizeT(){
+        Integer[] array1 = new Integer[]{1,2,3,4,66};
+        String[] array2 = new String[]{"siema", "Ala", "ma",};
+        boolean actual = Utils.arrayEqualsT(array1, array2);
+        assertThat(actual).isFalse();
+    }
+    @Test // T type
+    public void TwoOtherTypeTheSameSizeT(){
+        Integer[] array1 = new Integer[]{1,2,3,4,66};
+        String[] array2 = new String[]{"siema", "Ala", "ma", "kota", "Felika"};
+        boolean actual = Utils.arrayEqualsT(array1, array2);
+        assertThat(actual).isFalse();
+    }
+    @Test // T type
+    public void TheSameString(){
+        String[] array1 = {"siema", "Ala", "ma", "kota"};
+        String[] array2 = {"siema", "Ala", "ma","kota"};
+        boolean actual = Utils.arrayEqualsT(array1, array2);
+        assertThat(actual).isTrue();
+    }
     @Test
     public void oneOfRandomString(){
         String[] data = {"Ala","ma","kota","a","kot","ma","Alę"};
         String actual = Utils.rand(data);
-        assertThat(data).contains(actual);
+        assertThat(actual).isIn(data);
     }
 
     @Test
@@ -67,10 +106,18 @@ public class TestUtils {
         int actual = Utils.nwd(24,9);
         assertThat(actual).isEqualTo(3);
     }
+
     @Test
     public void nwdFor24And5IsOne(){
         int actual = Utils.nwd(24,5);
         assertThat(actual).isEqualTo(1);
+    }
+
+    @Test
+    public void nwdOfTheSameTwoNumbersIsThisNumber(){
+        int actual = Utils.nwd(4,4);
+        int expected = 4;
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test

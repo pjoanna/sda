@@ -14,17 +14,36 @@ public class Utils {
     }
 
     public static boolean arrayEquals(int[] array1, int[] array2) {
+        boolean value = false;
         if (array1.length == array2.length) {
             for (int i = 0; i < array1.length; i++) {
                 if (array1[i] == array2[i]) {
-                    return true;
+                    value = true;
                 } else {
-                    return false;
+                    value = false;
+                    break;
                 }
             }
         }
-        return false;
+        return value;
     }
+    // * zadanie dodatkowe poniżej
+
+    public static <T> boolean arrayEqualsT(T[] array1, T[] array2){
+        boolean value = false;
+        if (array1.length == array2.length) {
+            for (int i = 0; i < array1.length; i++) {
+                if (array1[i] == array2[i]) {
+                    value = true;
+                } else {
+                    value = false;
+                    break;
+                }
+            }
+        }
+        return value;
+    }
+
 
     public static String rand(String[] data){
         Random random = new Random();
