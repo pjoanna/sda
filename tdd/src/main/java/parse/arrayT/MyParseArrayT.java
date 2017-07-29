@@ -1,6 +1,5 @@
-package parse.array;
+package parse.arrayT;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,14 +10,12 @@ public class MyParseArrayT{
 
     public static <T> List<T> parseListT(String text, ElementParser<T> parser)  {
         List<T> tList = new ArrayList<>();
-        String[] tHelp;
-//        if ((!text.startsWith("[") || !text.endsWith("]"))){
-//            throw new IllegalArgumentException("Podany format nie jest zgodny z oczekiwanym");
-//        }
-        tHelp = text.split(",");
+        String[] tTextToArray;
 
-        for (String s : tHelp) {
-            T element = parser.parse(s);
+        tTextToArray = text.split(",");
+
+        for (String string : tTextToArray) {
+            T element = parser.parse(string);
             tList.add(element);
         }
 
@@ -33,10 +30,10 @@ public class MyParseArrayT{
                 return number;
             }
         };
-        String text = "112,748";
+        String text = "112748";
         System.out.println("Tekst przed parsowaniem " + text);
         parseListT(text, number);
-        System.out.println("Tekst po parsowaniu " +  parseListT(text, number));
+        System.out.println("Tekst po parsowaniu " + parseListT(text, number));
     }
 
 }

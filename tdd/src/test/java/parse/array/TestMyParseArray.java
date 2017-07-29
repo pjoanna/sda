@@ -1,3 +1,5 @@
+package parse.array;
+
 import org.junit.Test;
 import parse.array.MyParseArray;
 

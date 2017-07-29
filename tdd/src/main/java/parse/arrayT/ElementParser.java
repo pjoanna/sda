@@ -1,4 +1,4 @@
-package parse.array;
+package parse.arrayT;
 
 import java.text.ParseException;
 
