@@ -1,0 +1,5 @@
+Imię: Asia
+Nazwisko: ol
+Wiek: 23
+Płeć: kobieta
+Liczba dzieci: 0Miejsce zamieszkania: GdyniaUlubione danie: placki jabłkowe
