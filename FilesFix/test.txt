@@ -1,0 +1,8 @@
+name=a c
+age=23
+sex=mezczyzna
+answer1=null
+answer2=null
+answer3=null
+
+

@@ -1,15 +1,26 @@
+import java.util.Scanner;
+
 /**
  * Created by amen on 8/1/17.
  */
 public class Form {
     private String name;
-    private int age;
+    private String surname;
+    private Integer age;
     private String sex;
     private String answer1;
     private String answer2;
     private String answer3;
 
     public Form() {
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getName() {
@@ -63,7 +74,7 @@ public class Form {
 
     @Override
     public String toString() {
-        return "name=" + name + "\n" +
+        return "name=" + name  + " "  + surname + "\n" +
                 "age=" + age + "\n" +
                 "sex=" + sex + "\n" +
                 "answer1=" + answer1 + "\n" +

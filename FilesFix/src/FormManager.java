@@ -21,7 +21,9 @@ public class FormManager {
     }
 
     private void getNameAndSurnameFromUser() {
-        form.setName(ask("Podaj imie i nazwisko:"));
+        String odp = ask("Podaj imie i nazwisko:");
+        form.setName(odp.split(" ")[0]);
+        form.setSurname(odp.split(" ")[1]);
     }
 
     private void getAgeFromUser() {
