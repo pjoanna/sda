@@ -74,7 +74,8 @@ public class Form {
 
     @Override
     public String toString() {
-        return "name=" + name  + " "  + surname + "\n" +
+        return "name=" + name + "\n" +
+                "surname=" + surname + "\n" +
                 "age=" + age + "\n" +
                 "sex=" + sex + "\n" +
                 "answer1=" + answer1 + "\n" +

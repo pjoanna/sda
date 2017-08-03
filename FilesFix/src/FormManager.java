@@ -20,10 +20,13 @@ public class FormManager {
         form.setSex(ask("Podaj plec:"));
     }
 
-    private void getNameAndSurnameFromUser() {
-        String odp = ask("Podaj imie i nazwisko:");
-        form.setName(odp.split(" ")[0]);
-        form.setSurname(odp.split(" ")[1]);
+    private void getNameFromUser() {
+        String odp = ask("Podaj imie:");
+        form.setName(odp);
+    }
+    private void getSurnameFromUser() {
+        String odp = ask("Podaj nazwisko:");
+        form.setSurname(odp);
     }
 
     private void getAgeFromUser() {
@@ -49,9 +52,7 @@ public class FormManager {
 
     private void askMore() {
         form.setAnswer1(ask("Pytanie1:"));
-
         form.setAnswer2(ask("Pytanie2:"));
-
         form.setAnswer3(ask("Pytanie3:"));
     }
     private boolean shouldAskMore() {
@@ -63,7 +64,8 @@ public class FormManager {
 
     public Form createAndFillForm() {
         form = new Form();
-        getNameAndSurnameFromUser();
+        getNameFromUser();
+        getSurnameFromUser();
         getAgeFromUser();
         getSexFromUser();
         askMoreIfNecessery();
