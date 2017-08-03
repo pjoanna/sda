@@ -13,7 +13,6 @@ public class Main {
         File file = new File("test.txt");
         Scanner scanner = new Scanner(System.in);
         tryToFillFile(file, scanner);
-        checkIfFileExists(file);
         Form form = new Form();
         Map<String, Form> formMap = new HashMap<>();
         addFormToMap(file, form, formMap);
@@ -68,14 +67,6 @@ public class Main {
     private static String ask(Scanner sc, String text) {
         System.out.println(text);
         return sc.nextLine();
-    }
-
-    private static void checkIfFileExists(File file) {
-        if (file.exists()) {
-            System.out.println("Plik istnieje.");//
-        } else {
-            System.out.println("Plik nie istnieje.");
-        }
     }
 
 }

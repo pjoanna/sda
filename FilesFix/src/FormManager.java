@@ -17,7 +17,12 @@ public class FormManager {
     }
 
     private void getSexFromUser() {
-        form.setSex(ask("Podaj plec:"));
+        Sex sex ;
+        do {
+            String answer = ask("Podaj plec (m/k):");
+            sex = Sex.parse(answer);
+        }while (sex == Sex.UNKNOWN);
+        form.setSex(sex);
     }
 
     private void getNameFromUser() {
@@ -57,9 +62,9 @@ public class FormManager {
     }
     private boolean shouldAskMore() {
         int age = form.getAge();
-        String sex = form.getSex().toLowerCase();
-        return (sex.equals("mezczyzna") && age >25 && age <30)  ||
-                sex.equals("kobieta") && age >18 && age <25;
+        Sex sex = form.getSex();
+        return (sex==Sex.MALE && age >25 && age <30)  ||
+                sex==Sex.FEMALE && age >18 && age <25;
     }
 
     public Form createAndFillForm() {

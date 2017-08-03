@@ -7,7 +7,7 @@ public class Form {
     private String name;
     private String surname;
     private Integer age;
-    private String sex;
+    private Sex sex;
     private String answer1;
     private String answer2;
     private String answer3;
@@ -39,11 +39,11 @@ public class Form {
         this.age = age;
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 
@@ -77,7 +77,7 @@ public class Form {
         return "name=" + name + "\n" +
                 "surname=" + surname + "\n" +
                 "age=" + age + "\n" +
-                "sex=" + sex + "\n" +
+                "sex=" + sex.name() + "\n" +
                 "answer1=" + answer1 + "\n" +
                 "answer2=" + answer2 + "\n" +
                 "answer3=" + answer3 + "\n\n";

@@ -18,7 +18,7 @@ public class DataFromFormGetter {
         form.setName(nextValue());
         form.setSurname(nextValue());
         form.setAge(nextInt());
-        form.setSex(nextValue());
+        form.setSex(Sex.valueOf(nextValue()));
         form.setAnswer1(nextValue());
         form.setAnswer2(nextValue());
         form.setAnswer3(nextValue());
