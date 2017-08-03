@@ -16,9 +16,7 @@ public class Main {
         Form form = new Form();
         Map<String, Form> formMap = new HashMap<>();
         addFormToMap(file, form, formMap);
-
         searchPersonFromFile(scanner, formMap);
-
     }
 
     private static void searchPersonFromFile(Scanner scanner, Map<String, Form> formMap) {
@@ -39,7 +37,7 @@ public class Main {
 
     private static void addFormToMap(File file, Form form, Map<String, Form> formMap) {
         try (BufferedReader reader = new BufferedReader(new FileReader(file));) {
-            DataFromFormGetter data = new DataFromFormGetter();
+            DataFromFormGetter data = new DataFromFormGetter(form, reader);
             String nameAndSurname = data.getAnswersFromForm();
             formMap.put(nameAndSurname, form);
 

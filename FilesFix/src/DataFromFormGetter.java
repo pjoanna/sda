@@ -9,6 +9,11 @@ public class DataFromFormGetter {
     private Form form;
     private BufferedReader reader;
 
+    public DataFromFormGetter(Form form, BufferedReader reader) {
+        this.form = form;
+        this.reader = reader;
+    }
+
     public String getAnswersFromForm() throws IOException {
         getNameFromForm();
         getSurnameFromForm();
