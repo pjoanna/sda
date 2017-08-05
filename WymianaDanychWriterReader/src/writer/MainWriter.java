@@ -34,6 +34,7 @@ public class MainWriter {
 
                 } else {
                     writer.println(line);
+                    writer.flush();
                     System.out.println("Przesłano: " + line);
                 }
 
