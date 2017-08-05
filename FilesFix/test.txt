@@ -1,6 +1,7 @@
-name=a c
-age=23
-sex=mezczyzna
+name=a
+surname=a
+age=12
+sex=kobieta
 answer1=null
 answer2=null
 answer3=null

@@ -1,7 +1,8 @@
+package writer;
+
 /**
  * Created by RENT on 2017-08-05.
  */
-
 import java.io.*;
 import java.util.Scanner;
 
@@ -48,7 +49,4 @@ public class MainWriter {
     }
 
 }
-
-
-
 
