@@ -9,32 +9,34 @@ import java.util.Scanner;
 public class MainReader {
     public static void main(String[] args) {
         File file = new File("plik.txt");
-        long startTime = file.lastModified();
-        long startLength = file.length();
+        long lastModifiedTime = file.lastModified();
+        long lastLenght = file.length();
         Scanner scanner = new Scanner(System.in);
 
         boolean isLoopRunning = true;
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("plik.txt"))) {
             String lineFromFile = "";
 
             while (isLoopRunning) {
-                Thread.sleep(100);
+                Thread.sleep(1000);
 
-                if (file.lastModified() - startTime != 0 || startLength != (file.length())) {
-
-                    while (!reader.readLine().equals(null)) {
+                if ((file.lastModified() - lastModifiedTime) != 0 || lastLenght != (file.length())) {
+                    lastModifiedTime = file.lastModified();
+                    lastLenght = file.length();
+                    while (true) {
                         lineFromFile = reader.readLine();
+                        if (lineFromFile == null) {
+                            break;
+                        }
                         System.out.println(lineFromFile);
                         if (lineFromFile.equals("quit")) {
                             isLoopRunning = false;
                         }
-
                         System.out.println("Odebrano linię: " + lineFromFile);
                     }
-
-                }// TODO: jesli czytamy caly plik, to teraz trzeba wypisac tylko NAJNOWSZA linie
-                reader.close();
+                }
             }
+            reader.close();
         } catch (FileNotFoundException e0) {
 
         } catch (IOException e1) {
