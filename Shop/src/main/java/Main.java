@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,9 +13,23 @@ public class Main {
         String line;
         String command = "";
         List<Product> list = new ArrayList<>();
-
         menuOnStart();
+        list = getProducts(magazine, scanner, list);
+        showProductsList(list);
+    }
 
+    private static void showProductsList(List<Product> list) {
+        if (list.size() > 0) {
+            System.out.println("wyświetlam");
+            for (Product product : list) {
+                System.out.println(product.toString());
+            }
+        }
+    }
+
+    private static List<Product> getProducts(Magazine magazine, Scanner scanner, List<Product> list) throws IOException {
+        String line;
+        String command;
         line = scanner.nextLine();
         while (!line.equals("quit")) {
             command = line.split(" ")[0];
@@ -50,14 +63,7 @@ public class Main {
             System.out.println("Podaj następną komendę");
             line = scanner.nextLine();
         }
-        if (list.size() > 0) {
-            System.out.println("wyświetlam");
-            for (Product product : list) {
-                System.out.println(product.toString());
-            }
-        }
-
-
+        return list;
     }
 
     private static void menuOnStart() {

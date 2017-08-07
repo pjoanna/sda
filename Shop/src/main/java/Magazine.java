@@ -55,12 +55,15 @@ public class Magazine {
         String fileName = "out.xls";
         Workbook workbook = null;
 
-        if (fileName.endsWith("xlsx")) {
-            workbook = new XSSFWorkbook();
-        } else if (fileName.endsWith("xls")) {
-            workbook = new HSSFWorkbook();
-        }
+        workbook = getWorkbook(fileName, workbook);
 
+        addRows(workbook);
+        FileOutputStream fos = new FileOutputStream(fileName);
+        workbook.write(fos);
+        fos.close();
+    }
+
+    private void addRows(Workbook workbook) {
         Sheet sheet = workbook.createSheet("Products");
         int rowNumber = 0;
         for (List<Product> productClassList : map.values()) {
@@ -78,64 +81,92 @@ public class Magazine {
                 rowNumber++;
             }
         }
-        FileOutputStream fos = new FileOutputStream(fileName);
-        workbook.write(fos);
-        fos.close();
+    }
+
+    private Workbook getWorkbook(String fileName, Workbook workbook) {
+        if (fileName.endsWith("xlsx")) {
+            workbook = new XSSFWorkbook();
+        } else if (fileName.endsWith("xls")) {
+            workbook = new HSSFWorkbook();
+        }
+        return workbook;
     }
 
     public List<Product> readDataFromExcel(String fileName) {
         List<Product> products = new ArrayList<Product>();
 
         try {
-            //Create the input stream from the xlsx/xls file
             FileInputStream fis = new FileInputStream(fileName);
-
-            //Create Workbook instance for xlsx/xls file input stream
             Workbook workbook = null;
-            if (fileName.toLowerCase().endsWith("xlsx")) {
-                workbook = new XSSFWorkbook(fis);
-            } else if (fileName.toLowerCase().endsWith("xls")) {
-                workbook = new HSSFWorkbook(fis);
-            }
-
-            //Get the number of sheets in the xlsx file
-            int numberOfSheets = workbook.getNumberOfSheets();
-
-            //loop through each of the sheets
-            for (int i = 0; i < numberOfSheets; i++) {
-
-                //Get the nth sheet from the workbook
-                Sheet sheet = workbook.getSheetAt(i);
-
-                //every sheet has rows, iterate over them
-                Iterator<Row> rowIterator = sheet.iterator();
-                while (rowIterator.hasNext()) {
-                    String name = "";
-                    Double price = 0.0;
-                    ProductClass productClass;
-                    ProductType productType;
-
-                    //Get the row object
-                    Row row = rowIterator.next();
-                    Iterator<Cell> cellIterator = row.cellIterator();
-                    while (cellIterator.hasNext()) {
-                        Cell cellName = cellIterator.next();
-                        name = cellName.getStringCellValue();
-                        Cell cellPrice = cellIterator.next();
-                        price = cellPrice.getNumericCellValue();
-                        Cell cellClass = cellIterator.next();
-                        productType = ProductType.valueOf(cellClass.getStringCellValue());
-                        Cell cellType = cellIterator.next();
-                        productClass = ProductClass.valueOf(cellType.getStringCellValue());
-                        Product product = new Product(name, price, productClass, productType);
-                        products.add(product);
-                    }
-                }
-            }
+            workbook = getWorkbook(fileName, fis, workbook);
+            readRowsFromFile(products, workbook);
             fis.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return products;
+    }
+
+    private void readRowsFromFile(List<Product> products, Workbook workbook) {
+        int numberOfSheets = workbook.getNumberOfSheets();
+
+        for (int i = 0; i < numberOfSheets; i++) {
+            Sheet sheet = workbook.getSheetAt(i);
+            Iterator<Row> rowIterator = sheet.iterator();
+            while (rowIterator.hasNext()) {
+                String name = "";
+                Double price = 0.0;
+                ProductClass productClass;
+                ProductType productType;
+
+                Row row = rowIterator.next();
+                Iterator<Cell> cellIterator = row.cellIterator();
+                while (cellIterator.hasNext()) {
+                    name = getNameFromFile(cellIterator);
+                    price = getPriceFromFile(cellIterator);
+                    productType = getProductTypeFromFile(cellIterator);
+                    productClass = getProductClassFromFile(cellIterator);
+                    Product product = new Product(name, price, productClass, productType);
+                    products.add(product);
+                }
+            }
+        }
+    }
+
+    private ProductClass getProductClassFromFile(Iterator<Cell> cellIterator) {
+        ProductClass productClass;
+        Cell cellType = cellIterator.next();
+        productClass = ProductClass.valueOf(cellType.getStringCellValue());
+        return productClass;
+    }
+
+    private ProductType getProductTypeFromFile(Iterator<Cell> cellIterator) {
+        ProductType productType;
+        Cell cellClass = cellIterator.next();
+        productType = ProductType.valueOf(cellClass.getStringCellValue());
+        return productType;
+    }
+
+    private Double getPriceFromFile(Iterator<Cell> cellIterator) {
+        Double price;
+        Cell cellPrice = cellIterator.next();
+        price = cellPrice.getNumericCellValue();
+        return price;
+    }
+
+    private String getNameFromFile(Iterator<Cell> cellIterator) {
+        String name;
+        Cell cellName = cellIterator.next();
+        name = cellName.getStringCellValue();
+        return name;
+    }
+
+    private Workbook getWorkbook(String fileName, FileInputStream fis, Workbook workbook) throws IOException {
+        if (fileName.toLowerCase().endsWith("xlsx")) {
+            workbook = new XSSFWorkbook(fis);
+        } else if (fileName.toLowerCase().endsWith("xls")) {
+            workbook = new HSSFWorkbook(fis);
+        }
+        return workbook;
     }
 }
