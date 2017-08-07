@@ -15,10 +15,7 @@ public class Main {
         String command = "";
         List<Product> list = new ArrayList<>();
 
-        System.out.println("Wybierz: ");
-        System.out.println("dodaj_produkt NAZWA_PRODUKTU CENA FOOD/ALCOHOL/INDUSTRIAL LOW/MID/HIGH");
-        System.out.println("wylistuj_typ FOOD/ALCOHOL/INDUSTRIAL");
-        System.out.println("wylistuj_polka LOW/MID/HIGH");
+        menuOnStart();
 
         line = scanner.nextLine();
         while (!line.equals("quit")) {
@@ -34,13 +31,18 @@ public class Main {
                     break;
                 case "wylistuj_typ":
                     ProductType productType1 = ProductType.valueOf(line.split(" ")[1]);
-                    //    list = magazine.getByType(productType1);
-                    list = magazine.readDataFromExcel("out.xls");
+                    list = magazine.getByType(productType1);
+                    // list = magazine.readDataFromExcel("out.xls");
+//                    for (Product product : list) {
+//                        if(product.getType().equals(productType1)){
+//                            System.out.println(product.toString());
+//                        }
+//                    }
                     break;
                 case "wylistuj_polka":
                     ProductClass productClass1 = ProductClass.valueOf(line.split(" ")[1]);
-                    //    list = magazine.getByClass(productClass1);
-                    list = magazine.readDataFromExcel("out.xls");
+                    list = magazine.getByClass(productClass1);
+                    //  list = magazine.readDataFromExcel("out.xls");
                     break;
                 default:
                     break;
@@ -56,5 +58,12 @@ public class Main {
         }
 
 
+    }
+
+    private static void menuOnStart() {
+        System.out.println("Wybierz: ");
+        System.out.println("dodaj_produkt NAZWA_PRODUKTU CENA FOOD/ALCOHOL/INDUSTRIAL LOW/MID/HIGH");
+        System.out.println("wylistuj_typ FOOD/ALCOHOL/INDUSTRIAL");
+        System.out.println("wylistuj_polka LOW/MID/HIGH");
     }
 }

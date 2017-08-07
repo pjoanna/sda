@@ -50,13 +50,14 @@ public class Magazine {
         }
         return filteredProducts;
     }
+
     public void saveToExcel() throws IOException {
         String fileName = "out.xls";
         Workbook workbook = null;
 
-        if(fileName.endsWith("xlsx")){
+        if (fileName.endsWith("xlsx")) {
             workbook = new XSSFWorkbook();
-        }else if(fileName.endsWith("xls")){
+        } else if (fileName.endsWith("xls")) {
             workbook = new HSSFWorkbook();
         }
 
