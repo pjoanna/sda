@@ -10,8 +10,8 @@ import java.util.Map;
 public class Database {
     private final Map<Long, Record> recordMap = new HashMap<>();
 
-    public void addRecord(Long id, Record record) {
-        recordMap.put(id, record);
+    public void addRecord(Record record) {
+        recordMap.put(record.getId(), record);
     }
 
     public Record findRecord(Long id) {
@@ -29,19 +29,18 @@ public class Database {
         Iterator<Map.Entry<Long, Record>> iterator = recordMap.entrySet().iterator();
         while (iterator.hasNext()) {
             Record record = iterator.next().getValue();
-            Timestamp lifeStart = Timestamp.valueOf(record.getLocalDateTime());
+            Timestamp lifeStart = Timestamp.valueOf(record.getStartTime());
             Timestamp now = Timestamp.valueOf(LocalDateTime.now());
-            Long lifeTime = record.getLifeTime().getTime();
+            Timestamp lifeTime = Timestamp.valueOf(record.getEndTime());
 
             System.out.println(now.getTime()+"  now" );
             System.out.println(lifeStart.getTime()+ "  start" );
             System.out.println(lifeTime+"  czas trwania");
 
-            Long period = now.getTime() - lifeStart.getTime() - lifeTime;
+            Long period = lifeTime.getTime() - now.getTime();
             if (period <= 0) {
                 System.out.println("Rekord " + record.getName() + " i id: " + record.getId() + "jest przedawniony i został usunięty");
-                recordMap.remove(record);
-
+                iterator.remove();
             }
         }
 
