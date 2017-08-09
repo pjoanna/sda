@@ -1,4 +1,3 @@
-import javax.xml.crypto.Data;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,13 +15,13 @@ public class MailServer {
         clients.remove(client);
     }
 
-    public void sendMessage(Mail mail,Client sender){
+    public void sendMessage(Mail mail, Client sender){
         clients.remove(sender);
         List<Client> clients1 = clients;
         LocalDate date = LocalDate.now();
+        mail.setDataOdbioru(date);
         for (Client client : clients1) {
             client.readMail(mail);
-            // zmienić status odebrania na true :P
         }
     }
 }
