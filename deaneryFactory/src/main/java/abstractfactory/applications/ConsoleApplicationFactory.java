@@ -14,7 +14,7 @@ public class ConsoleApplicationFactory extends AbsApplicationFactory {
     }
 
     @Override
-    public ConditionalStayApplication createConditionalStayApplication() {
+    public Application createConditionalStayApplication() {
         return ApplicationsCreator.createConditionalStayApplication(scanner);
     }
 
