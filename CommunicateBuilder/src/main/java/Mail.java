@@ -10,21 +10,119 @@ public class Mail {
     private MESSAGE_TYPE message_type;
     private boolean isSzyfrowane, isSpam;
 
-    private Mail(String tresc, String nadawca, String nazwaSerweraPosredniego, String nazwaSkrzynkiPocztowej, String protokolKomunikacji, LocalDate dataNadania, LocalDate dataOdbioru, long adresIPNadania, long adresIPOdbiorcy, MESSAGE_TYPE message_type, boolean isSzyfrowane, boolean isSpam) {
-        this.tresc = tresc;
-        this.nadawca = nadawca;
-        this.nazwaSerweraPosredniego = nazwaSerweraPosredniego;
-        this.nazwaSkrzynkiPocztowej = nazwaSkrzynkiPocztowej;
-        this.protokolKomunikacji = protokolKomunikacji;
-        this.dataNadania = dataNadania;
-        this.dataOdbioru = dataOdbioru;
-        this.adresIPNadania = adresIPNadania;
-        this.adresIPOdbiorcy = adresIPOdbiorcy;
-        this.message_type = message_type;
-        this.isSzyfrowane = isSzyfrowane;
-        this.isSpam = isSpam;
+    public Mail(Builder builder) {
+        this.tresc = builder.tresc;
+        this.nadawca = builder.nadawca;
+        this.nazwaSerweraPosredniego = builder.nazwaSerweraPosredniego;
+        this.nazwaSkrzynkiPocztowej = builder.nazwaSkrzynkiPocztowej;
+        this.protokolKomunikacji = builder.protokolKomunikacji;
+        this.dataNadania = builder.dataNadania;
+        this.dataOdbioru = builder.dataOdbioru;
+        this.adresIPNadania = builder.adresIPNadania;
+        this.adresIPOdbiorcy = builder.adresIPOdbiorcy;
+        this.message_type = builder.message_type;
+        this.isSzyfrowane = builder.isSzyfrowane;
+        this.isSpam = builder.isSpam;
     }
-    public static class Builder{
+
+    public String getTresc() {
+        return tresc;
+    }
+
+    public void setTresc(String tresc) {
+        this.tresc = tresc;
+    }
+
+    public String getNadawca() {
+        return nadawca;
+    }
+
+    public void setNadawca(String nadawca) {
+        this.nadawca = nadawca;
+    }
+
+    public String getNazwaSerweraPosredniego() {
+        return nazwaSerweraPosredniego;
+    }
+
+    public void setNazwaSerweraPosredniego(String nazwaSerweraPosredniego) {
+        this.nazwaSerweraPosredniego = nazwaSerweraPosredniego;
+    }
+
+    public String getNazwaSkrzynkiPocztowej() {
+        return nazwaSkrzynkiPocztowej;
+    }
+
+    public void setNazwaSkrzynkiPocztowej(String nazwaSkrzynkiPocztowej) {
+        this.nazwaSkrzynkiPocztowej = nazwaSkrzynkiPocztowej;
+    }
+
+    public String getProtokolKomunikacji() {
+        return protokolKomunikacji;
+    }
+
+    public void setProtokolKomunikacji(String protokolKomunikacji) {
+        this.protokolKomunikacji = protokolKomunikacji;
+    }
+
+    public LocalDate getDataNadania() {
+        return dataNadania;
+    }
+
+    public void setDataNadania(LocalDate dataNadania) {
+        this.dataNadania = dataNadania;
+    }
+
+    public LocalDate getDataOdbioru() {
+        return dataOdbioru;
+    }
+
+    public void setDataOdbioru(LocalDate dataOdbioru) {
+        this.dataOdbioru = dataOdbioru;
+    }
+
+    public long getAdresIPNadania() {
+        return adresIPNadania;
+    }
+
+    public void setAdresIPNadania(long adresIPNadania) {
+        this.adresIPNadania = adresIPNadania;
+    }
+
+    public long getAdresIPOdbiorcy() {
+        return adresIPOdbiorcy;
+    }
+
+    public void setAdresIPOdbiorcy(long adresIPOdbiorcy) {
+        this.adresIPOdbiorcy = adresIPOdbiorcy;
+    }
+
+    public MESSAGE_TYPE getMessage_type() {
+        return message_type;
+    }
+
+    public void setMessage_type(MESSAGE_TYPE message_type) {
+        this.message_type = message_type;
+    }
+
+    public boolean isSzyfrowane() {
+        return isSzyfrowane;
+    }
+
+    public void setSzyfrowane(boolean szyfrowane) {
+        isSzyfrowane = szyfrowane;
+    }
+
+    public boolean isSpam() {
+        return isSpam;
+    }
+
+    public void setSpam(boolean spam) {
+        isSpam = spam;
+    }
+
+
+    public static class Builder {
         private String tresc;
         private String nadawca;
         private String nazwaSerweraPosredniego;
@@ -37,6 +135,10 @@ public class Mail {
         private MESSAGE_TYPE message_type;
         private boolean isSzyfrowane;
         private boolean isSpam;
+
+        public Builder() {
+
+        }
 
         public Builder setTresc(String tresc) {
             this.tresc = tresc;
@@ -99,7 +201,7 @@ public class Mail {
         }
 
         public Mail createMail() {
-            return new Mail(tresc, nadawca, nazwaSerweraPosredniego, nazwaSkrzynkiPocztowej, protokolKomunikacji, dataNadania, dataOdbioru, adresIPNadania, adresIPOdbiorcy, message_type, isSzyfrowane, isSpam);
+            return new Mail(this);
         }
     }
 

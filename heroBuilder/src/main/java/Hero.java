@@ -4,7 +4,7 @@
 public class Hero {
     private String m_name, m_surname, m_legacy;
     private double m_height, m_width, m_strength;
-    private int m_level, m_hp, m_handCount=4 ;
+    private int m_level, m_hp, m_handCount = 4;
     private boolean m_isAlive;
 
     public Hero(Builder builder) {
@@ -103,10 +103,10 @@ public class Hero {
         this.m_isAlive = m_isAlive;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String m_name, m_surname, m_legacy;
         private double m_height, m_width, m_strength;
-        private int m_level, m_hp, m_handCount=4 ;
+        private int m_level, m_hp, m_handCount = 4;
         private boolean m_isAlive;
 
         public Builder() {
@@ -162,7 +162,7 @@ public class Hero {
             return this;
         }
 
-        public Hero create(){
+        public Hero create() {
             return new Hero(this);
         }
     }
