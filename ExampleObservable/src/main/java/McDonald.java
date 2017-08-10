@@ -1,5 +1,3 @@
-
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
@@ -19,7 +17,7 @@ public class McDonald extends Observable {
             addObserver(e);
 //            deleteObserver(e);
         }
-    }
+}
 
     public void handleOrder(String order){
         setChanged();

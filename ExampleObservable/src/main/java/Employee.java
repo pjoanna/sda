@@ -16,9 +16,7 @@ public class Employee implements Observer {
 
         if (arg instanceof String) {
             String castedNews = (String) arg;
-
             System.out.println(id + " powiadomiony o " + castedNews);
-
         }
     }
 }
