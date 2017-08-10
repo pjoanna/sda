@@ -10,6 +10,7 @@ public class Department {
     public void addOffice(Office office){
         officeList.add(office);
     }
+
     public Office getOffice(int room){
         Office office = officeList.get(room);
         return office;

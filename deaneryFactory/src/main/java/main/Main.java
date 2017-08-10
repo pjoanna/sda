@@ -2,15 +2,16 @@ package main;
 
 import applications.Application;
 import applications.ApplicationFactory;
-import person.Person;
-import person.PersonCreator;
+
+import java.util.Scanner;
 
 /**
  * Created by RENT on 2017-08-09.
  */
 public class Main {
     public static void main(String[] args) {
-        Application app = ApplicationFactory.createConditionalStayApplication();
+        Scanner scanner = new Scanner(System.in);
+        Application app = ApplicationFactory.createConditionalStayApplication(scanner);
 
 
 

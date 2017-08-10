@@ -1,13 +1,13 @@
-package applications;
+package abstractfactory.applications;
 
-import person.Person;
+import abstractfactory.person.Person;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static person.PersonCreator.createPerson;
+import static abstractfactory.person.PersonCreator.createPerson;
 
 /**
  * Created by RENT on 2017-08-09.
