@@ -4,13 +4,9 @@ import java.util.List;
  * Created by RENT on 2017-08-09.
  */
 public class Hotel {
-    private HotelPhone phone;
+    private final HotelPhone phone = new HotelPhone();
     private List<HotelEmployee> employees;
     private List<HotelRoom> rooms;
-
-    public Hotel(HotelPhone phone) {
-        this.phone = phone;
-    }
 
     public void handleClient(HotelGuest guest){
         //?dla każdego klienta iteruje po kolekcji klientów
@@ -24,7 +20,6 @@ public class Hotel {
 
     public void register(){
 
-
     }
 
     public void unregister(){
@@ -35,7 +30,14 @@ public class Hotel {
 
     }
 
-    public void complaint(){
+    public void complain(){
+
+    }
+
+    public void checkCalls(){
+        for (PhoneCall call : phone.getCalls()) {
+            System.out.println(call.toString());
+        }
 
     }
 }
