@@ -9,4 +9,12 @@ public class Message {
         this.number = number;
         this.text = text;
     }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public String getText() {
+        return text;
+    }
 }

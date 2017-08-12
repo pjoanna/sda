@@ -9,11 +9,9 @@ public class McDonald extends Observable {
 
     private List<Employee> employeeList = new LinkedList<>();
     public McDonald() {
-        for(int i=0; i < 10; i++){
+        for(int i = 0; i < 10; i++){
             Employee e = new Employee();
             employeeList.add(e);
-
-            //
             addObserver(e);
 //            deleteObserver(e);
         }
