@@ -14,12 +14,13 @@ public class AlexaDevice extends Observable {
     }
 
     public void sendRequest(String requestString) {
+        Request request = new Request(requestString, this);
         setChanged();
-        notifyObservers();
+        notifyObservers(request);
+
     }
 
-    public void invoke(AbstractSkill abstractSkill){
+    public void invoke(AbstractSkill abstractSkill) {
         threads.submit(abstractSkill);
-        abstractSkill.run();
     }
 }
