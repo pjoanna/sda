@@ -1,9 +1,12 @@
+package observableObserver;
+
 import java.util.Scanner;
 
 /**
- * Created by RENT on 2017-08-12.
+ * Created by pjoanna on 2017-08-22.
  */
 public class Main {
+
     public static void main(String[] args) {
         SmsStation station = new SmsStation();
         station.addPhonesOnStart();

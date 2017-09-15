@@ -1,9 +1,14 @@
-import java.util.*;
+package observableObserver;
 
-public class SmsStation extends Observable {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+
+/**
+ * Created by pjoanna on 2017-08-22.
+ */
+public class SmsStation extends Observable{
     private List<Phone> phoneList = new ArrayList<>();
-
-
 
     public void addPhone(Phone phone) {
         phoneList.add(phone);

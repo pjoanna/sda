@@ -1,8 +1,10 @@
+package observableObserver;
+
 import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by RENT on 2017-08-10.
+ * Created by pjoanna on 2017-08-22.
  */
 public class Phone implements Observer {
     private String number;

@@ -8,9 +8,6 @@ public class Employee implements Observer {
 
     private int id = counter++;
 
-    public Employee() {
-    }
-
     @Override
     public void update(java.util.Observable o, Object arg) {
 
