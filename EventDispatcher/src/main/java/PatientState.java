@@ -5,9 +5,5 @@ import java.util.Timer;
  */
 public enum PatientState {
     GOOD, BAD, CRITICAL, STABLE;
-    
 
-    public void refresh(){
-
-    }
 }

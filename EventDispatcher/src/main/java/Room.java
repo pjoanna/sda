@@ -1,6 +1,3 @@
-import javax.lang.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -35,6 +32,8 @@ public class Room extends AbstractUnit{
                 } else {
                     Room.this.patientState = PatientState.GOOD;
                 }
+
+                EventDispatcher.getInstance().dispatch(new PatientStateChangedEvent(room_id, Room.this.patientState));
 
             }
         }, 10000, 8000);

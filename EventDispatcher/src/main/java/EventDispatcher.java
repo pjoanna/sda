@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
  */
 public class EventDispatcher {
     private static EventDispatcher ourInstance = new EventDispatcher();
-    private ExecutorService theads = Executors.newSingleThreadExecutor();
+    private ExecutorService threads = Executors.newSingleThreadExecutor();
     private Map<Class<?>, List<?>> map = new HashMap<>();
 
     public static EventDispatcher getInstance() {
@@ -93,7 +93,7 @@ public class EventDispatcher {
          * Drugą opcją jest implementowanie przez IEvent interfejsu Runnable. Wybrałem tą opcję.
          * Zastanów się dlaczego?
          */
-        theads.submit(new Runnable() {
+        threads.submit(new Runnable() {
             @Override
             public void run() {
                 try {
