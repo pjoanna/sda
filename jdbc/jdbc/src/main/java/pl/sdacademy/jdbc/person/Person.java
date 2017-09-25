@@ -1,14 +1,26 @@
 package pl.sdacademy.jdbc.person;
 
+import pl.sdacademy.jdbc.animal.Animal;
+
+import java.util.Set;
+
 /**
  *
  */
 public class Person {
-
 	private Long id;
 	private String firstName;
 	private String lastName;
+	private Animal animal;
 
+
+	public Animal getAnimal() {
+		return animal;
+	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
+	}
 
 	public Long getId() {
 		return id;

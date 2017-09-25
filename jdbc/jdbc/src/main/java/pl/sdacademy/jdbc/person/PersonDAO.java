@@ -1,14 +1,11 @@
 package pl.sdacademy.jdbc.person;
-
+import pl.sdacademy.jdbc.animal.Animal;
 import pl.sdacademy.jdbc.db.DBUtil;
-
 import java.sql.*;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
-
-/**
- *
- */
 public class PersonDAO {
 
     private final Connection connection;
@@ -53,7 +50,6 @@ public class PersonDAO {
      * https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-last-insert-id.html
      */
     public Optional<Person> addPerson(Person person) {
-        Person personFromDB = new Person();;
         try {
             String sql = "insert into person (first_name, last_name) values (?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -103,18 +99,32 @@ public class PersonDAO {
         }
     }
 
+    public Optional<Person> showAnimals(Person person) {
+        try {
+            String sql = "select * from person p left join animal a where p.id = a.person_id";
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setLong(1, person.getId());
+            statement.executeUpdate();
+
+            ResultSet resultSet = statement.getGeneratedKeys();
+
+            while (resultSet.next()) {
+                return findById(resultSet.getLong(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
+
     public static void main(String[] args) {
         PersonDAO personDAO = new PersonDAO();
         Person person = new Person();
-        person.setLastName("dddd");
-        person.setFirstName("ddddd");
-        Optional<Person> person1 = personDAO.addPerson(person);
-        System.out.println(person1.toString());
-
         person.setLastName("dedede4");
         person.setFirstName("rrere2");
         personDAO.deletePerson(2L);
         personDAO.updatePerson(person);
+        personDAO.showAnimals(person);
 
     }
 
