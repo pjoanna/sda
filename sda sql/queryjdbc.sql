@@ -11,10 +11,12 @@ INSERT INTO person (first_name, last_name) VALUES ('firstname1', 'lastname1'), (
 select * from person;
 
 
-CREATE TABLE `bookstore`.`animal` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
-  `breed` VARCHAR(255) NOT NULL,
-  `person_id` int NOT NULL,
-  PRIMARY KEY (`id`)),
-  foreign key `person_id` references person(id); 
+CREATE TABLE animal(
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  breed VARCHAR(255) NOT NULL,
+  person_id int,
+  PRIMARY KEY (`id`),
+  foreign key (person_id) references person(id)); 
+  
+ select * from person p left join animal a on p.id = a.person_id where p.id = 2;
