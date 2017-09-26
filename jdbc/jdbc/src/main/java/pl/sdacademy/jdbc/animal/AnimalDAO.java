@@ -24,22 +24,28 @@ public class AnimalDAO {
 
         try {
             // 1) Statement lub PreparedStatement
-            String sql = "select * from person p left join animal a where p.id = a.person_id";
+            String sql = "select p.id idfromperson, p.first_name, p.last_name, a.id animalid, a.name, a.breed breed, a.person_id personid from person p left join animal a on p.id= a.person_id where a.person_id =?";
+
+
             PreparedStatement statement = connection.prepareStatement(sql);
 
             // 2) executeQuery()
             statement.setLong(1, animal_id);
             ResultSet resultSet = statement.executeQuery();
 
-            // 3) next()
             while (resultSet.next()) {
-                Long animalID = resultSet.getLong("id");
-                String name = resultSet.getString("name");
-                String breed = resultSet.getString("breed");
-                Long person_id = resultSet.getLong("person_id");
+                Long personID = resultSet.getLong(1);
+                String first_name = resultSet.getString(2);
+                String last_name = resultSet.getString(3);
+                Long animalID = resultSet.getLong(4);
+                String name = resultSet.getString(5);
+                String breed = resultSet.getString(6);
+                Long person_id = resultSet.getLong(7);
 
-
-                // 4) new Person() || empty()
+                Person person = new Person();
+                person.setId(personID);
+                person.setFirstName(first_name);
+                person.setLastName(last_name);
                 Animal animal = new Animal();
                 animal.setId(animalID);
                 animal.setName(name);
@@ -54,5 +60,11 @@ public class AnimalDAO {
         return Optional.empty();
     }
 
+    public static void main(String[] args) {
+        AnimalDAO animalDAO = new AnimalDAO();
+        Optional<Animal> animal = animalDAO.findById(1L);
+
+        System.out.println(animal.toString());
+    }
 
 }

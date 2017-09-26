@@ -125,7 +125,6 @@ public class PersonDAO {
         personDAO.deletePerson(2L);
         personDAO.updatePerson(person);
         personDAO.showAnimals(person);
-
     }
 
 
