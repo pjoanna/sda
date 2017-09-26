@@ -16,5 +16,6 @@
         <property name="current_session_context_class">thread</property>
 
         <mapping class="domain.Employee"/>
+        <mapping class="domain.Person"/>
     </session-factory>
 </hibernate-configuration>
