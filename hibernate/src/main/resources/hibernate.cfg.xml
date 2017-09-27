@@ -17,5 +17,12 @@
 
         <mapping class="domain.Employee"/>
         <mapping class="domain.Person"/>
+        <mapping class="onetoone.Address"/>
+        <mapping class="onetoone.Customer"/>
+
+        <mapping class="onetoonemappedby.Address1"/>
+        <mapping class="onetoonemappedby.Customer1"/>
+        <mapping class="onetoonepk.Human"/>
+        <mapping class="onetoonepk.Brain"/>
     </session-factory>
 </hibernate-configuration>
