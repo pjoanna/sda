@@ -24,5 +24,16 @@
         <mapping class="onetoonemappedby.Customer1"/>
         <mapping class="onetoonepk.Human"/>
         <mapping class="onetoonepk.Brain"/>
+
+        <mapping class="onetomany.User"/>
+        <mapping class="onetomany.Phone"/>
+
+        <mapping class="manytoone.Animal"/>
+        <mapping class="manytoone.Owner"/>
+
+        <mapping class="many2many.Attraction"/>
+        <mapping class="many2many.Town"/>
+
+
     </session-factory>
 </hibernate-configuration>

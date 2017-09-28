@@ -27,7 +27,13 @@ CREATE TABLE animal(
  select * from brain;
  select * from human;
  
+ use hiber;
+ select * from phone;
+ select * from user;
  
+ 
+ select * from animal;
+ select * from owner;
  
  
  
