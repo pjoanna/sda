@@ -32,6 +32,11 @@ CREATE TABLE animal(
  select * from user;
  
  
+ select * from attraction;
+ select * from town;
+ select * from town_to_attraction;
+ 
+ 
  select * from animal;
  select * from owner;
  
