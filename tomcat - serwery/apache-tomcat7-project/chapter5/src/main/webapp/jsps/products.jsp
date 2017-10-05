@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="content">
-      <b>Welcome to Apress store <!--, <%= request.getRemoteUser() %>   -->
+       <b>Welcome to Apress store  <%= request.getRemoteUser() %>
        </b>
         Select product: <br/>
         <table>
@@ -20,9 +20,9 @@
                 <td>Apache Tomcat 7</td>
                 <td>$34.99</td>
                 <td>
-                    <form action="<%=response.encodeURL("/chapter5/addToBasket.html")%>" style="margin-bottom:0px;" method="POST">
-                        <input type="hidden" name="productName" value="Apache Tomcat 7"/>
-                        <input type="hidden" name="price" value="34.99"/>
+                    <form action="<%=response.encodeURL("/chapter5/addToBasket.html")%>" style="margin-bottom:0px;" method="GET">
+                        <input type="button" name="productName" value="Apache Tomcat 7"/>
+                        <input type="button" name="price" value="34.99"/>
                         <input type="submit" value="Add to basket" />
                     </form>
                 </td>

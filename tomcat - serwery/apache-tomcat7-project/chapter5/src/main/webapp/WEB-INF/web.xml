@@ -10,8 +10,25 @@
     <session-config>
         <session-timeout>60</session-timeout>
         <sessionCookieName>MYCUSTOMSESSIONCOOKIE</sessionCookieName>
-        <name>MYCUSTOMSESSIONCOOKIE2</name>
+        <name>MYCUSTOMSESSIONCOOKIE</name>
     </session-config>
+
+
+    <servlet>
+        <servlet-name>addtobasket</servlet-name>
+        <servlet-class>com.apress.apachetomcat7.chapter5.AddToBasketServlet</servlet-class>
+       <!-- <init-param>
+            <param-name>message</param-name>
+            <param-value>Hello Universe!</param-value>
+        </init-param>-->
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>addtobasket</servlet-name>
+        <url-pattern>/products.jsp</url-pattern>
+    </servlet-mapping>
+
 
 
 </web-app>

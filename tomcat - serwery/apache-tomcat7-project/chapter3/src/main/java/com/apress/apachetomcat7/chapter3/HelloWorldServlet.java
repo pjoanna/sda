@@ -13,23 +13,28 @@ import java.io.PrintWriter;
  */
 public class HelloWorldServlet extends HttpServlet {
     private String message;
+    private Integer count;
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         this.message = config.getInitParameter("message");
+        this.count = Integer.parseInt(config.getInitParameter("count"));
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws IOException, ServletException
-    {
+            throws IOException, ServletException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+
         out.println("<html>");
         out.println("<head>");
         out.println("<title>" + this.message + "</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>Hello World!</h1>");
+        for (int i = 0; i < count; i++) {
+            out.println("<h1>" + message + "</h1>");
+        }
         out.println("</body>");
         out.println("</html>");
     }

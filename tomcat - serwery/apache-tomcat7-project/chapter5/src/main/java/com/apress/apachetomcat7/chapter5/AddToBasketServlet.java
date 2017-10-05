@@ -34,14 +34,8 @@ public class AddToBasketServlet extends HttpServlet{
 
         session.setAttribute("SHOPPING_BASKET", basket);
         response.sendRedirect("/chapter5/jsps/products.jsp");
+       // response.sendRedirect("/chapter5/src/main/webapp/jsps/products.jsp");
     }
-
-//    private String message;
-//    @Override
-//    public void init(ServletConfig config) throws ServletException {
-//        super.init(config);
-//        this.message = config.getInitParameter("message");
-//    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)throws IOException, ServletException
     {

@@ -1,10 +1,10 @@
 <html>
   <head>
    <title>Apress Demo</title>
-   <meta http-equiv=ÓContent-TypeÓ content=Ótext/html; charset=UTF-8Ó>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body>
-    <div class=ÓcontentÓ>
+    <div class="content">
       <b>Login error, please go back to <a href="login.jsp">login page</a>.</b>
     </div>
   </body>
