@@ -21,8 +21,8 @@
                 <td>$34.99</td>
                 <td>
                     <form action="<%=response.encodeURL("/chapter5/addToBasket.html")%>" style="margin-bottom:0px;" method="GET">
-                        <input type="button" name="productName" value="Apache Tomcat 7"/>
-                        <input type="button" name="price" value="34.99"/>
+                        <input type="hidden" name="productName" value="Apache Tomcat 7"/>
+                        <input type="hidden" name="price" value="34.99"/>
                         <input type="submit" value="Add to basket" />
                     </form>
                 </td>
