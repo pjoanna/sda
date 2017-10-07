@@ -1,4 +1,4 @@
-<%@ page import="java.time.LocalDate" pageEncoding="utf-8" %>
+<%@ page import="java.time.LocalDate" pageEncoding="utf-8" isELIgnored="false" %>
 <%@page language="java" contentType="text/html" %>
 <%--<html>--%>
 <%--<head>--%>
@@ -44,6 +44,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <p>
     Dzisiaj jest: <%= LocalDate.now().toString() %>
+
+    <c:out value="wyświetlam cokolwiek"></c:out>
+
+    <c:if test="${5<7}">
+        <c:out value="prawda"></c:out>
+    </c:if>
+    </br>
+    <%--<c:import var="data" url="http://hapacz.pl"/>--%>
+    <%--<c:out value="${data}"/>--%>
+
+    <c:catch var="catchtheException">
+            <% int x = 2/0;%>
+    </c:catch>
+
+    <c:if test="${catchtheException != null}">
+<p>The type of exception is : ${catchtheException} <br/>
+    There is an exception: ${catchtheException.message}</p>
+</c:if>
+
+<c:forEach var="j" begin="1" end="3">
+Item <c:out value="${j}"/><p>
+    </c:forEach>
 
 </p>
 
