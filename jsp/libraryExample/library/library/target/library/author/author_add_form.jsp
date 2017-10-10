@@ -16,7 +16,7 @@
     <legend>Dodawanie autora</legend>
     <form action="<c:url value="../author.jsp"/>" method="post">
         <input type="hidden" name="action" value="add_author" />
-        <input type="text" name="name" value="" /><br />
+        <input type="text" name="name" value=""/><br />
         <input type="text" name="surname" value="">
         <input type="submit" name="submit" value="dodaj" />
     </form>
