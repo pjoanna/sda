@@ -1,0 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<fieldset>
+    <legend>Menu</legend>
+    <a href="<c:url value="category.jsp"/>">Kategorie</a> | <a href="<c:url value="author.jsp"/>">Autorzy</a> | <a href="<c:url value="book.jsp"/>">Książki</a>
+</fieldset>
+
+<br clear="all"/>
