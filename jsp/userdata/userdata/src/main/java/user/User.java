@@ -10,15 +10,22 @@ import javax.persistence.Id;
  */
 public class User {
 
+	private static int counter;
+
 	private int id;
 	private String name;
 
 	public User() {
+		this.id = ++counter;
 	}
 
-	public User(int id, String name) {
-		this.id = id;
+	public User(String name) {
+		this();
 		this.name = name;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getId() {

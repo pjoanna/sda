@@ -55,6 +55,25 @@
         <url-pattern>/users.html</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>EditUserServlet</servlet-name>
+        <servlet-class>user.EditUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditUserServlet</servlet-name>
+        <url-pattern>/editUser.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditUserFormServlet</servlet-name>
+        <servlet-class>user.EditUserFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditUserFormServlet</servlet-name>
+        <url-pattern>/edituser.html</url-pattern>
+    </servlet-mapping>
+
+
     <welcome-file-list>
         <welcome-file>users.html</welcome-file>
     </welcome-file-list>

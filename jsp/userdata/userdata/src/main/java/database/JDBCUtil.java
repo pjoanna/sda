@@ -9,18 +9,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-@Slf4j
+//@Slf4j
 public class JDBCUtil {
 
 	private static Connection conn;
 
 	public static Connection getConnection() {
 		if (conn != null) {
-			log.info("Zwracanie Connection");
+		//	log.info("Zwracanie Connection");
 			return conn;
 		}
 
-		log.info("Ladowanie Connection");
+		//log.info("Ladowanie Connection");
 
 		InputStream inputStream = JDBCUtil.class.getClassLoader().getResourceAsStream("/db.properties");
 		Properties properties = new Properties();

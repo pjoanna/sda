@@ -10,5 +10,7 @@
 <%@include file="../jspf/menu.jspf"%>
 <h2>${user}</h2>
 <h3><a href="/removeUser.do?id=${user.getId()}">usuń</a></h3>
+
+<h3><a href="/edituser.html?id=${user.getId()}">edytuj</a></h3>
 </body>
 </html>
