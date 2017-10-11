@@ -15,7 +15,17 @@
     Brak userów!
 </c:if>
 <c:forEach items="${users}" var="user">
-    <a href="user.html?id=${user.getId()}"><c:out value="${user}"></c:out></a><br />
+
+    <c:choose>
+        <c:when test="${user.id eq newUser}">
+            <b> <a href="user.html?id=${user.getId()}"><c:out value="${user}"></c:out></a><br /> </b>
+        </c:when>
+        <c:otherwise>
+            <i> <a href="user.html?id=${user.getId()}"><c:out value="${user}"></c:out></a><br /> </i>
+        </c:otherwise>
+    </c:choose>
+
+
 </c:forEach>
 </body>
 </html>

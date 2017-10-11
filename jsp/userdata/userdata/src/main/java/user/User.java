@@ -8,10 +8,13 @@ import javax.persistence.Id;
 /**
  *
  */
+@Entity
 public class User {
 
 	private static int counter;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 

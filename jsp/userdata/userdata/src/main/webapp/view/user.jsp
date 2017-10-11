@@ -9,7 +9,11 @@
 <body>
 <%@include file="../jspf/menu.jspf"%>
 <h2>${user}</h2>
-<h3><a href="/removeUser.do?id=${user.getId()}">usuń</a>&nbsp
+<h3><form name="removeUser" action="/removeUser.do" method="post">
+    <input type="hidden" name="id" value="${user.id}"/><br/>
+    <input type="submit" name="submit" value="Usuń"/>
+</form>
+    <br/>
     <a href="/edituser.html?id=${user.getId()}">edytuj</a></h3>
 </body>
 </html>

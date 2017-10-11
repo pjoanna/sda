@@ -14,7 +14,7 @@ public class RemoveUserServlet extends HttpServlet {
 
 	private UserDAO userDAO = new UserDAO();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String errorMsg = "";
 		String id = request.getParameter("id");
 		Integer userId = Integer.valueOf(id);
@@ -42,5 +42,10 @@ public class RemoveUserServlet extends HttpServlet {
 		request.setAttribute("_OK", "Usunieto usera o id=" + userId);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/users.html");
 		requestDispatcher.forward(request, response);
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req,resp);
 	}
 }

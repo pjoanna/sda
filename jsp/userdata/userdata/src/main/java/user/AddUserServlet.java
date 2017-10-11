@@ -47,6 +47,7 @@ public class AddUserServlet extends HttpServlet {
 		}
 
 		request.setAttribute("_OK", "Dodano usera o id=" + userId + " i name=" + name);
+		request.setAttribute("newUser", userId);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/users.html");
 		requestDispatcher.forward(request, response);
 	}
