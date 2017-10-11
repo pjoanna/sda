@@ -38,6 +38,7 @@ public class UserDAO {
 		return true;
 	}
 
+
 	public boolean removeUser(int id) {
 		if (!users.containsKey(id)) {
 		//	log.error("User o id=" + id + " nie istnieje!");
@@ -51,9 +52,8 @@ public class UserDAO {
 		if (!users.containsKey(id)){
 			return false;
 		}
-		User user = new User(name);
-		user.setId(id);
-		users.put(id, user);
+		User user = users.get(id);
+		user.setName(name);
 		return true;
 	}
 }
