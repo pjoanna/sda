@@ -1,0 +1,9 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:if test="${_ERROR != null}">
+    <h3 style="text-align:center; color: red">${_ERROR}</h3>
+</c:if>
+
+<c:if test="${_OK != null}">
+    <h3 style="text-align:center; color: green">${_OK}</h3>
+</c:if>

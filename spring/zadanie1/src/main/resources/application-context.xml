@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="simple"
+          class="sda.spring.beans.SimpleBean">
+        <property name="value" value="Spring is fun." />
+        <property name="any" value="90"/>
+    </bean>
+
+    <bean id="composed"
+          class="sda.spring.beans.ComposedBean">
+        <property name="simple" ref="simple" />
+    </bean>
+
+    <bean id="constructorInjected"
+          class="sda.spring.beans.ConstructorInjected" init-method="init" >
+        <constructor-arg ref="simple"></constructor-arg>
+        <constructor-arg ref="composed"></constructor-arg>
+        <constructor-arg name="text" value="cokolwiek"></constructor-arg>
+    </bean>
+
+    <bean id="myBean"
+          class="sda.spring.beans.MyBean" >
+        <constructor-arg name="flag" value="false"></constructor-arg>
+        <constructor-arg name="count" value="20"></constructor-arg>
+        <constructor-arg name="name" value="pppp"></constructor-arg>
+        <constructor-arg name="simpleBean" ref="simple"></constructor-arg>
+    </bean>
+
+    <bean id="one"
+          class="sda.spring.beans.One">
+        <constructor-arg name="value" value="45"></constructor-arg>
+    </bean>
+
+    <bean id="two"
+          class="sda.spring.beans.Two">
+        <constructor-arg ref="one"></constructor-arg>
+    </bean>
+
+    <bean id="three"
+          class="sda.spring.beans.Three">
+        <constructor-arg ref="two"></constructor-arg>
+    </bean>
+</beans>
+         

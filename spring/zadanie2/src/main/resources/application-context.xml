@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>application.properties</value>
+		</property>
+	</bean>
+
+	<bean id="simple" class="sda.spring.beans.SimpleBean">
+		<property name="value" value="${simple.value}" />
+	</bean>
+
+	<bean id="composed" class="sda.spring.beans.ComposedBean" >
+		<property name="simple" ref="simple" />
+	</bean>
+	<bean id="constructorInjected" class="sda.spring.beans.ConstructorInjected">
+        <constructor-arg ref="simple"/>
+    </bean>
+
+	<bean id="myBean" class="sda.spring.beans.MyBean" depends-on="composed"> <!-- composed zamienić na mergingBean i pięknie zepsute -->
+		<property name="text" value="${text.value}" />
+	</bean>
+
+	<bean id="mergingBean" class="sda.spring.beans.MergingBean" >
+		<constructor-arg name="constructorInjected" ref="constructorInjected"/>
+		<constructor-arg name="myBean" ref="myBean"/>
+
+	</bean>
+    <bean class="sda.spring.beans.MyBeanPostProcessor"/>
+
+</beans>
+         

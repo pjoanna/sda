@@ -1,0 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<table border="1" width="1000" align="center">
+    <tr>
+        <td><a href="users.html">Userzy</a></td>
+        <td><a href="adduser.html">Dodawanie usera</a></td>
+    </tr>
+</table>
+<br clear="all"/>
