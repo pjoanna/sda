@@ -19,11 +19,10 @@ public class User {
 	private String name;
 
 	public User() {
-		this.id = ++counter;
+
 	}
 
 	public User(String name) {
-		this();
 		this.name = name;
 	}
 

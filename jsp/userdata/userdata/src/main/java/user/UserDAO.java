@@ -1,109 +1,76 @@
 package user;
 
-import database.HibernateUtil;
-import lombok.extern.java.Log;
-import lombok.extern.slf4j.Slf4j;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
-import java.util.*;
+import database.HibernateUtil;
 
 //@Slf4j
 public class UserDAO {
 
-	private static final Map<Integer, User> users = new HashMap<>();
-    SessionFactory sessionFactory;
-    Session session;
+    private static UserDAO ourInstance = new UserDAO();
 
-	public UserDAO(){
-        this.sessionFactory = HibernateUtil.getSessionFactory();
+    private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    private static Session session = sessionFactory.openSession();
+
+    private UserDAO() {
     }
-//
-//	static {
-////		User user1 = new User("Rafos");
-////		user1.setId(1);
-////		users.put(user1.getId(), user1);
-////		User user2 = new User("Admin");
-////		user2.setId(3);
-////		users.put(user2.getId(), user2);
-//	}
 
-	public Optional<User> getUserById(int id) {
-		return Optional.ofNullable(users.get(id));
-	}
-
-	public Set<User> getAll() {
-	    session = sessionFactory.openSession();
-
-	    try {
-            session.beginTransaction();
-            List<User> userList = (List<User>) session.createQuery("from User").getResultList();
-            users.clear();
-            for (User user : userList) {
-                users.put(user.getId(), user);
-            }
-
-            session.update(users);
-            session.getTransaction().commit();
-        }catch (Throwable e){
-            System.out.println("rollback");
-            session.getTransaction().rollback();
-            e.printStackTrace();
-
-        }finally {
-            session.close();
-        }
+    @Override
+    protected void finalize() throws Throwable {
         session.close();
-     //   sessionFactory.close();
+    }
 
-		return new HashSet<>(users.values());
-	}
+    public static UserDAO getInstance() {
+        return ourInstance;
+    }
 
-	public boolean addUser(int id, String name) {
+    public Optional<User> getUserById(int id) {
 
-	    session = sessionFactory.openSession();
-        try {
-            session.beginTransaction();
-            User user = new User(name);
-            user.setId(id);
-            users.put(id, user);
+        Transaction tr = session.beginTransaction();
+        User user = session.get(User.class, id);
 
-            session.save(user);
-           // session.persist(user);
-            session.getTransaction().commit();
+        Optional<User> userOptional = Optional.ofNullable(user);
 
-        }catch (Throwable e){
-            System.out.println("rollback");
-            session.getTransaction().rollback();
-            e.printStackTrace();
-            session.close();
+        tr.commit();
+        return userOptional;
+    }
+
+    public Set<User> getAll() {
+        Transaction tr = session.beginTransaction();
+        String hql = "FROM User";
+        Query query = session.createQuery(hql);
+        List<User> results = query.list();
+
+        Set<User> returned = new HashSet<>(results);
+
+        tr.commit();
+        return returned;
+    }
+
+    public Optional<User> addUser(String name) {
+        Transaction tr = session.beginTransaction();
+        User user = new User(name);
+        Integer employeeID = (Integer) session.save(user);
+        tr.commit();
+        return getUserById(employeeID);
+    }
+
+    public boolean removeUser(int id) {
+        Transaction tr = session.beginTransaction();
+        Optional<User> userById = getUserById(id);
+        if (!userById.isPresent()) {
             return false;
-        }finally {
-            session.close();
         }
-        session.close();
-  //      sessionFactory.close();
-
-        return  true;
-
-	}
-
-
-	public boolean removeUser(int id) {
-		if (!users.containsKey(id)) {
-		//	log.error("User o id=" + id + " nie istnieje!");
-			return false;
-		}
-		users.remove(id);
-		return true;
-	}
-
-	public boolean editUser(int id, String name){
-		if (!users.containsKey(id)){
-			return false;
-		}
-		User user = users.get(id);
-		user.setName(name);
-		return true;
-	}
+        session.delete(userById.get());
+        tr.commit();
+        return true;
+    }
 }
