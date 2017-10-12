@@ -43,7 +43,7 @@ public class UserDAO {
                 users.put(user.getId(), user);
             }
 
-
+            session.update(users);
             session.getTransaction().commit();
         }catch (Throwable e){
             System.out.println("rollback");
@@ -54,6 +54,7 @@ public class UserDAO {
             session.close();
         }
         session.close();
+     //   sessionFactory.close();
 
 		return new HashSet<>(users.values());
 	}
@@ -67,8 +68,8 @@ public class UserDAO {
             user.setId(id);
             users.put(id, user);
 
-            session.persist(user);
-
+            session.save(user);
+           // session.persist(user);
             session.getTransaction().commit();
 
         }catch (Throwable e){
@@ -81,6 +82,8 @@ public class UserDAO {
             session.close();
         }
         session.close();
+  //      sessionFactory.close();
+
         return  true;
 
 	}

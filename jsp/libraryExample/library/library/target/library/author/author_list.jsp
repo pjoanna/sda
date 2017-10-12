@@ -28,7 +28,7 @@
                         <td>
                             <a href="<c:url value="../author.jsp">
                                 <c:param name="id" value="${author.value.id}" />
-                                <c:param name="view" value="edit_author"/>
+                                <c:param name="view" value="edit_author_form"/>
                             </c:url>">edytuj </a>
                             <a href="<c:url value="../author.jsp">
                                 <c:param name="id" value="${author.value.id}" />
@@ -41,7 +41,7 @@
         </c:otherwise>
     </c:choose>
     <p>
-        <a href="<c:url value="../author.jsp"><c:param name="view" value="add_author"/></c:url>">Dodaj autora</a>
+        <a href="<c:url value="../author.jsp"><c:param name="view" value="add_author_form"/></c:url>">Dodaj autora</a>
     </p>
 </fieldset>
 </body>

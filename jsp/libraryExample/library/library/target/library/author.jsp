@@ -7,9 +7,10 @@
 <head>Autorzy</head>
 <body>
 <c:choose>
-    <c:when test="${param.action eq 'add_author'} ">
-        <%
+    <c:when test="${param.action eq 'add_author'}">
+        <% System.out.println("działa");
             addAuthor(request, session);
+            System.out.println("działa");
         %>
     </c:when>
     <c:when test="${param.action eq 'edit_author'}">
@@ -28,7 +29,7 @@
     <c:when test="${param.view eq 'list_author'}">
         <jsp:forward page="author/author_list.jsp"></jsp:forward>
     </c:when>
-    <c:when test="${param.view eq 'add_author'}">
+    <c:when test="${param.view eq 'add_author_form'}">
         <jsp:forward page="author/author_add_form.jsp"></jsp:forward>
     </c:when>
     <c:when test="${param.view eq 'edit_author'}">

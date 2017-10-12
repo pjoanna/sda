@@ -21,7 +21,7 @@ public class AddUserServlet extends HttpServlet {
 		String errorMsg = "";
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
-		Integer userId = Integer.valueOf(id);
+		Integer userId = Integer.parseInt(id);
 		if (null == userId) {
 			errorMsg += "Nie podano parametru id.";
 		}
@@ -33,7 +33,7 @@ public class AddUserServlet extends HttpServlet {
 			log.error(errorMsg);
 			request.setAttribute("_ERROR", errorMsg);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/adduser.html");
-			requestDispatcher.forward(request, response);
+			requestDispatcher.include(request, response);
 			return;
 		}
 
@@ -42,13 +42,13 @@ public class AddUserServlet extends HttpServlet {
 			log.error("Problem z dodaniem usera o id=" + id + " i name=" + name);
 			request.setAttribute("_ERROR", "Problem z dodaniem usera o id=" + id + " i name=" + name);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/error.jsp");
-			requestDispatcher.forward(request, response);
+			requestDispatcher.include(request, response);
 			return;
 		}
 
 		request.setAttribute("_OK", "Dodano usera o id=" + userId + " i name=" + name);
 		request.setAttribute("newUser", userId);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/users.html");
-		requestDispatcher.forward(request, response);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/users.html"); //html, jsp?
+		requestDispatcher.include(request, response);
 	}
 }
