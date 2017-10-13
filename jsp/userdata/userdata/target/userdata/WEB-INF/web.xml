@@ -19,6 +19,16 @@
         <url-pattern>/user.html</url-pattern>
     </servlet-mapping>
 
+
+    <!--<filter>-->
+        <!--<filter-name>AddUserFilter</filter-name>-->
+        <!--<filter-class>user.AddUserFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>AddUserFilter</filter-name>-->
+        <!--<servlet-name>AddUserServlet</servlet-name>-->
+    <!--</filter-mapping>-->
+
     <servlet>
         <servlet-name>AddUserServlet</servlet-name>
         <servlet-class>user.AddUserServlet</servlet-class>

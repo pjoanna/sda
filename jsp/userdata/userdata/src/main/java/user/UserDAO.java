@@ -1,76 +1,146 @@
 package user;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
+import database.HibernateUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
-import database.HibernateUtil;
+import java.io.Serializable;
+import java.util.*;
 
 //@Slf4j
 public class UserDAO {
 
-    private static UserDAO ourInstance = new UserDAO();
+    private static final Map<Integer, User> users = new LinkedHashMap<>();
 
-    private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-    private static Session session = sessionFactory.openSession();
+    SessionFactory sessionFactory;
+    Session session;
 
-    private UserDAO() {
+    public UserDAO() {
+        this.sessionFactory= HibernateUtil.getSessionFactory();
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        session.close();
+    public UserDAO(SessionFactory sessionFactory) {
+        this.sessionFactory=sessionFactory;
     }
 
-    public static UserDAO getInstance() {
-        return ourInstance;
-    }
+//	static {
+//
+//		User user1=new User( "Rafos");
+//		User user2=new User( "Admin");
+//		users.put(user1.getId(), user1);
+//		users.put(user2.getId(), user2);
+//	}
 
     public Optional<User> getUserById(int id) {
-
-        Transaction tr = session.beginTransaction();
-        User user = session.get(User.class, id);
-
-        Optional<User> userOptional = Optional.ofNullable(user);
-
-        tr.commit();
-        return userOptional;
+        return Optional.of(users.get(id));
     }
 
     public Set<User> getAll() {
-        Transaction tr = session.beginTransaction();
-        String hql = "FROM User";
-        Query query = session.createQuery(hql);
-        List<User> results = query.list();
 
-        Set<User> returned = new HashSet<>(results);
+        session=sessionFactory.openSession();
+        try {
+            session.beginTransaction();
 
-        tr.commit();
-        return returned;
+            List<User> usersList = (List<User>) session.createQuery("from User")
+                    .getResultList();
+            users.clear();
+            for (User u : usersList) {
+                users.put(u.getId(), u);
+            }
+            session.getTransaction().commit();
+        } catch (Throwable e) {
+            System.out.println("ROLLBACK");
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+
+        }
+
+        session.close();
+        return new LinkedHashSet<>(users.values());
     }
 
-    public Optional<User> addUser(String name) {
-        Transaction tr = session.beginTransaction();
-        User user = new User(name);
-        Integer employeeID = (Integer) session.save(user);
-        tr.commit();
-        return getUserById(employeeID);
+    public int addUser(String name) {
+
+        int idToReturn=0;
+
+        session=sessionFactory.openSession();
+        try {
+            session.beginTransaction();
+
+            User user = new User(name);
+
+
+            session.persist(user);
+            session.getTransaction().commit();
+            idToReturn=user.getId();
+
+        } catch (Throwable e) {
+            System.out.println("ROLLBACK");
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        session.close();
+        return idToReturn;
     }
 
     public boolean removeUser(int id) {
-        Transaction tr = session.beginTransaction();
-        Optional<User> userById = getUserById(id);
-        if (!userById.isPresent()) {
+        if (!users.containsKey(id)) {
+            //		log.error("User o id=" + id + " nie istnieje!");
             return false;
         }
-        session.delete(userById.get());
-        tr.commit();
+        session=sessionFactory.openSession();
+        try {
+            session.beginTransaction();
+
+            User user = session.find(User.class, id);
+            session.delete(user);
+//			session.createQuery("delete from User where id= :id")
+//					.setParameter("id", id)
+//					.executeUpdate();
+
+            session.getTransaction().commit();
+
+        } catch (Throwable e) {
+            System.out.println("ROLLBACK");
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        session.close();
+        return true;
+    }
+
+    public boolean editUser (User user){
+        if (!users.containsKey(user.getId())) {
+            //		log.error("User o id=" + id + " nie istnieje!");
+            return false;
+        }
+        session=sessionFactory.openSession();
+
+
+        try {
+
+            session.beginTransaction();
+
+            User userToUpdate = session.find(User.class, user.getId());
+            userToUpdate.setName(user.getName());
+            session.save(userToUpdate);
+            session.getTransaction().commit();
+
+        } catch (Throwable e) {
+            System.out.println("ROLLBACK");
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        session.close();
         return true;
     }
 }

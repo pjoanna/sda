@@ -9,7 +9,7 @@
 <body>
 <%@include file="../jspf/menu.jspf"%>
 <h2>${user}</h2>
-<h3><form name="removeUser" action="/removeUser.do" method="post">
+<h3><form name="removeUser" action="/removeUser.do" method="post" onchange="break">
     <input type="hidden" name="id" value="${user.id}"/><br/>
     <input type="submit" name="submit" value="Usuń"/>
 </form>

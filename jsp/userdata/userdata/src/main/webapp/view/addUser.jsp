@@ -10,9 +10,10 @@
 <%@include file="../jspf/message.jspf" %>
 <%@include file="../jspf/menu.jspf" %>
 <form name="addUser" action="/addUser.do" method="post">
-    id: <input type="text" name="id" value=""/><br/>
     name: <input type="text" name="name" value=""/><br/>
-    <input type="submit" name="submit" value="Dodaj"/>
+    <input type="submit" name="submit" value="Dodaj" />
+    <%--<button type="submit" ondblclick="<% request.getRequestDispatcher("/users.html").forward(request,response); %>"/>--%>
+
 </form>
 </body>
 </html>

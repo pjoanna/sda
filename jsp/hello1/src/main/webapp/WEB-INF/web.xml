@@ -13,6 +13,7 @@
         <filter-name>PageFilter</filter-name>
         <servlet-name>PageServlet</servlet-name>
     </filter-mapping>
+
     <filter>
         <filter-name>CounterPageFilter</filter-name>
         <filter-class>filtry.CounterPageFilter</filter-class>
