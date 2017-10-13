@@ -14,7 +14,7 @@ public class ComposedBean {
 	public SimpleBean getSimple() {
 		return simple;
 	}
-
+	
 	public void setSimple(SimpleBean simple) {
 		this.simple = simple;
 	}
@@ -22,7 +22,7 @@ public class ComposedBean {
 	
 	@PostConstruct
 	public void init(){
-		System.out.println("ConstructorInjected created");
+		System.out.println("ComposedBean created");
 	}
 
 }

@@ -3,7 +3,7 @@ package sda.spring.beans;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("simple")
 public class SimpleBean {
 	
 	@Value("${simple.value}")

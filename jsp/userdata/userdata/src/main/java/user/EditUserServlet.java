@@ -40,6 +40,7 @@ public class EditUserServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/users.html");
         requestDispatcher.forward(req, resp);
 
+
     }
 
     private Optional<User> getUserById(String id) {
