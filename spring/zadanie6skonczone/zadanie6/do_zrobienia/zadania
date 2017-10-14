@@ -1,0 +1,6 @@
+1. Popraw walidacje usera podczas logowania
+2. Popraw proces rejestracji, tak by nie mozna bylo zarejestrowac 2 uzytkownikow o tym samym loginie
+3. Popraw rejestracje tak, by wszystkie pola byly wymagane
+4. Dodaj w kontrolerze logowania mape w ktorej bedziesz trzymac aktualnie zalogowanych userow
+5. Dodaj przycisk wylogowania ktory usunie usera z mapy aktualnie zalogowanych
+6. Dodaj nowy kontroler ktory wypisze na nowej stronie jsp aktualnie zalogowanych userow

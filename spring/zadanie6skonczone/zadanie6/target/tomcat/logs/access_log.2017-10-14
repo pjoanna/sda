@@ -1,0 +1,5 @@
+0:0:0:0:0:0:0:1 - - [14/Oct/2017:13:02:53 +0200] "GET /SpringMvcUser/home HTTP/1.1" 200 395 http-bio-8080-exec-1 6097
+0:0:0:0:0:0:0:1 - - [14/Oct/2017:13:03:03 +0200] "GET /SpringMvcUser/register HTTP/1.1" 200 1664 http-bio-8080-exec-2 231
+0:0:0:0:0:0:0:1 - - [14/Oct/2017:13:03:08 +0200] "POST /SpringMvcUser/registerProcess HTTP/1.1" 200 778 http-bio-8080-exec-3 110
+0:0:0:0:0:0:0:1 - - [14/Oct/2017:13:03:10 +0200] "GET /SpringMvcUser/home.jsp HTTP/1.1" 200 395 http-bio-8080-exec-4 2
+0:0:0:0:0:0:0:1 - - [14/Oct/2017:13:03:12 +0200] "GET /SpringMvcUser/home HTTP/1.1" 200 442 http-bio-8080-exec-5 4

@@ -1,0 +1,8 @@
+sda\spring\controller\HomeController.class
+sda\spring\model\User.class
+sda\spring\service\UserDaoImpl.class
+sda\spring\controller\RegistrationController.class
+sda\spring\service\UserDao.class
+sda\spring\service\LoggedUsersService.class
+sda\spring\model\Login.class
+sda\spring\controller\LoginController.class
