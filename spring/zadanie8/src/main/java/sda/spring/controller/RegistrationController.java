@@ -44,7 +44,7 @@ public class RegistrationController {
 			@ApiResponse(code = 400, message = "get400", response = Void.class)
 	})
 	public ResponseEntity<Void> getMethod() {
-        System.out.println("get działa");;
+        System.out.println("get działa");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
