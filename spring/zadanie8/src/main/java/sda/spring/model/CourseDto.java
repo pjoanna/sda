@@ -1,6 +1,4 @@
 package sda.spring.model;
-
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -24,6 +22,19 @@ public class CourseDto {
     @ApiModelProperty(value = "Data zakończenia")
     @JsonProperty("end")
     private Date end;
+
+
+    @ApiModelProperty(value = "maksymalna liczba uczestników")
+    @JsonProperty("max participants")
+    private int maxParticipants;
+
+    public int getMaxParticipants() {
+        return maxParticipants;
+    }
+
+    public void setMaxParticipants(int maxParticipants) {
+        this.maxParticipants = maxParticipants;
+    }
 
     public String getName() {
         return name;
@@ -55,6 +66,7 @@ public class CourseDto {
                 "name='" + name + '\'' +
                 ", start=" + start +
                 ", end=" + end +
+                ", maxParticipants=" + maxParticipants +
                 '}';
     }
 }

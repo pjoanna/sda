@@ -2,6 +2,7 @@ package sda.spring.service;
 
 import org.springframework.stereotype.Service;
 import sda.spring.model.CourseDto;
+import sda.spring.repository.CourseRepository;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -9,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CourseDaoImpl implements CourseDao {
     private ConcurrentHashMap<String, CourseDto> data = new ConcurrentHashMap<>();
 
+    private CourseRepository repository;
 
     @Override
     public void add(CourseDto courseDto) {

@@ -38,7 +38,6 @@ public class UserDto {
 	@Min(1)
 	@ApiModelProperty(value = "telefon")
 	@JsonProperty("phone")
-	
 	private int phone;
 
 	public String getUsername() {
