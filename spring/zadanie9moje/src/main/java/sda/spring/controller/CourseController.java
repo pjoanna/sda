@@ -8,25 +8,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import sda.spring.model.CourseDto;
+import sda.spring.model.UserDto;
 import sda.spring.service.CourseDao;
+import sda.spring.validator.CourseValidator;
+
+import javax.validation.Valid;
 
 @RestController
 public class CourseController {
 
     @Autowired
+    CourseValidator courseValidator;
+    @Autowired
     CourseDao courseDao;
+
+    @InitBinder
+    public void dataBinding(WebDataBinder binder){
+        binder.addValidators(courseValidator);
+    }
+
+
 
     @RequestMapping(value = "/addCourseProcess", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Dodaję kurs.", notes = "", response = Void.class)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Kurs dodany", response = Void.class),
             @ApiResponse(code = 401, message = "Nie udało się dodać kursu", response = Void.class)})
-    public ResponseEntity<Void> addCourse(@ApiParam(value = "Dodawanie kursu") @RequestBody CourseDto courseDto) {
+    public ResponseEntity<Void> addCourse(@ApiParam(value = "Dodawanie kursu") @Valid @RequestBody CourseDto courseDto) {
         courseDao.add(courseDto);
-//        if (courseDao.getCourseDto(courseDto.getName()) != null){
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -54,6 +65,18 @@ public class CourseController {
         }
         courseDao.update(name, courseDto);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/course/{id}", method = RequestMethod.GET)
+    @ApiOperation(value = "Wyświetla kurs.", notes = "", response = CourseDto.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Kurs znaleziony", response = CourseDto.class),
+            @ApiResponse(code = 404, message = "nieudane wyszukiwanie", response = Void.class) })
+    public ResponseEntity<CourseDto> loginProcess(@ApiParam(value = "Dane logowania") @RequestParam("id") String courseName) {
+        CourseDto course = courseDao.getCourseDto(courseName);
+        if (course == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<CourseDto>(course, HttpStatus.OK);
     }
 
 

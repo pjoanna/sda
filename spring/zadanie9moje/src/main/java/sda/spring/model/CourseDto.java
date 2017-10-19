@@ -1,14 +1,18 @@
 package sda.spring.model;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import java.time.LocalDate;
 import java.util.Date;
 
 @ApiModel(description = "Kurs")
-public class CourseDto {
+public class CourseDto{
+
 
     @NotBlank
     @ApiModelProperty(value = "nazwa")

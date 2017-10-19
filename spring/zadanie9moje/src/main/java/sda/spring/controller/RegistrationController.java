@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import sda.spring.model.UserDto;
 import sda.spring.service.UserDao;
+import sda.spring.validator.CourseValidator;
 
 @RestController
 public class RegistrationController {

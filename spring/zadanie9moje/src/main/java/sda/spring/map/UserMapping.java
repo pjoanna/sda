@@ -1,8 +1,10 @@
 package sda.spring.map;
 
+import org.springframework.stereotype.Component;
 import sda.spring.model.User;
 import sda.spring.model.UserDto;
 
+@Component
 public class UserMapping {
     public static User mapToUser(UserDto userDto) {
         User entity = new User();
