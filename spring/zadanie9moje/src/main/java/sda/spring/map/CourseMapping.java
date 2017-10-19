@@ -8,7 +8,7 @@ import sda.spring.model.CourseDto;
 public class CourseMapping {
     public Course mapToCourse(CourseDto courseDto) {
         Course entity = new Course();
-        entity.setName(courseDto.getName());
+        entity.setCourseName(courseDto.getName());
         entity.setEnd(courseDto.getEnd());
         entity.setStart(courseDto.getStart());
         entity.setMaxParticipants(courseDto.getMaxParticipants());
@@ -17,7 +17,7 @@ public class CourseMapping {
 
     public CourseDto mapToCourseDto(Course course) {
         CourseDto dto = new CourseDto();
-        dto.setName(course.getName());
+        dto.setName(course.getCourseName());
         dto.setEnd(course.getEnd());
         dto.setStart(course.getStart());
         dto.setMaxParticipants(course.getMaxParticipants());

@@ -10,6 +10,7 @@ import sda.spring.model.UserDto;
 @Service
 public class UserDaoImpl implements UserDao {
 
+
 	private ConcurrentHashMap<String, UserDto> data = new ConcurrentHashMap<>();
 
 	public void register(UserDto user) {

@@ -2,6 +2,7 @@ package sda.spring.service;
 
 import sda.spring.model.CourseDto;
 import sda.spring.model.LoginDto;
+import sda.spring.model.User;
 import sda.spring.model.UserDto;
 
 public interface CourseDao {
@@ -14,4 +15,7 @@ public interface CourseDao {
     void remove(CourseDto courseDto);
 
     void update(String name, CourseDto courseDto);
+
+    boolean addUserToCourse(String courseName, User user);
+
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import sda.spring.map.CourseMapping;
 import sda.spring.model.Course;
 import sda.spring.model.CourseDto;
+import sda.spring.model.User;
 import sda.spring.repository.CourseRepository;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,14 +15,14 @@ public class CourseDaoImpl implements CourseDao {
     private ConcurrentHashMap<String, CourseDto> data = new ConcurrentHashMap<>();
 
     @Autowired
-    private CourseRepository repository;
+    private CourseRepository courseRepository;
     @Autowired
     private CourseMapping mapping;
 
     @Override
     public void add(CourseDto courseDto) {
         Course course = mapping.mapToCourse(courseDto);
-      //  repository.save(course);
+        courseRepository.save(course);
     }
 
     @Override
@@ -32,7 +33,7 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public CourseDto getCourseDto(String name) {
-        Course course = repository.findByName(name);
+        Course course = courseRepository.findByCourseName(name);
         if (course == null){
             return null;
         }
@@ -49,5 +50,10 @@ public class CourseDaoImpl implements CourseDao {
         CourseDto courseDtoToUpdate = getCourseDto(name);
         add(newCourseDto);
         remove(courseDtoToUpdate);
+    }
+
+    @Override
+    public boolean addUserToCourse(String courseName, User user) {
+        return false;
     }
 }
