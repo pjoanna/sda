@@ -8,6 +8,6 @@ import sda.spring.model.CourseDto;
 public interface CourseRepository extends JpaRepository<Course, Long> {
     Course findByName(String courseName);
 
-    Course validateCourse(String name);
+    //Course validateCourse(String name);
 
 }

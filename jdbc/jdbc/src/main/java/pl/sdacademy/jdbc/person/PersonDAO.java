@@ -103,7 +103,7 @@ public class PersonDAO {
         try {
             String sql = "select * from person p left join animal a where p.id = a.person_id";
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setLong(1, person.getId());
+        //    statement.setLong(1, person.getId());
             statement.executeUpdate();
 
             ResultSet resultSet = statement.getGeneratedKeys();
