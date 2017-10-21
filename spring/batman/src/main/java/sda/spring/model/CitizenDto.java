@@ -5,26 +5,37 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotBlank;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@ApiModel("SuperHero")
-public class SuperHeroDto {
+@ApiModel("Citizen")
+public class CitizenDto {
+
     @ApiModelProperty("id - klucz sztuczny")
-    @JsonIgnore
     private Long id;
     @NotBlank
-    @ApiModelProperty("Nazwa bohatera")
+    @ApiModelProperty("Nazwa obywatela")
     private String name;
-    @JsonIgnore
-    @ApiModelProperty("Lista obywateli")
-    private List<Citizen> citizens;
 
-    public List<Citizen> getCitizens() {
-        return citizens;
+    @JsonIgnore
+    @ApiModelProperty("lista bohaterów")
+    public List<SuperHero> getHeroes() {
+        return heroes;
     }
 
-    public void setCitizens(List<Citizen> citizens) {
-        this.citizens = citizens;
+    public void setHeroes(List<SuperHero> heroes) {
+        this.heroes = heroes;
+    }
+
+    @ApiModelProperty("Lista bohaterów")
+    private List<SuperHero> heroes = new ArrayList<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -35,17 +46,9 @@ public class SuperHeroDto {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Override
     public String toString() {
-        return "SuperHero{" +
+        return "Citizen{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

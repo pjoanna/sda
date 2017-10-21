@@ -1,4 +1,4 @@
-package sda.spring;
+package sda.spring.mapper;
 
 import org.springframework.stereotype.Component;
 import sda.spring.model.SuperHero;

@@ -6,4 +6,5 @@ import sda.spring.model.SuperHero;
 
 @Repository
 public interface SuperHeroRepository extends JpaRepository<SuperHero, Long> {
+    SuperHero findByName(String name);
 }
