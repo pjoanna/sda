@@ -18,7 +18,6 @@ import sda.spring.validator.CourseValidator;
 import sda.spring.validator.UserValidator;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 public class UserCourseController {
@@ -44,7 +43,8 @@ public class UserCourseController {
     @ApiOperation(value = "Dodaję użytkowników do kursu.", notes = "", response = Void.class)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Użytkownicy dodani", response = Void.class),
             @ApiResponse(code = 401, message = "Nie udało się dodać użytkowników", response = Void.class)})
-    public ResponseEntity<Boolean> addCourse(@ApiParam(value = "Dodawanie userów") @RequestParam(value = "name") String courseName, @Valid @RequestBody UserDto userDto) {
+    public ResponseEntity<Boolean> addCourse(@ApiParam(value = "Dodawanie userów")
+                                                 @RequestParam(value = "name") String courseName, @Valid @RequestBody UserDto userDto) {
         boolean b = courseDao.addUserToCourse(courseName, userMapping.mapToUser(userDto));
         return new ResponseEntity<>(b, HttpStatus.OK);
     }
