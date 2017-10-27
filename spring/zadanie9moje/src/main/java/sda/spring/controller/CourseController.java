@@ -22,6 +22,7 @@ public class CourseController {
 
     @Autowired
     CourseValidator courseValidator;
+
     @Autowired
     CourseDao courseDao;
 
@@ -29,7 +30,6 @@ public class CourseController {
     public void dataBinding(WebDataBinder binder){
         binder.addValidators(courseValidator);
     }
-
 
 
     @RequestMapping(value = "/addCourseProcess", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
